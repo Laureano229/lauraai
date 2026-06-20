@@ -220,7 +220,7 @@ def root():
 
 @app.get("/app")
 async def frontend(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(request, "index.html", {})
 
 @app.post("/registro")
 async def registrar_usuario(request: RegistroRequest):
@@ -472,4 +472,3 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
-    
