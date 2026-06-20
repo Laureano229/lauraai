@@ -47,7 +47,13 @@ def get_sheet():
         "https://spreadsheets.google.com/feeds",
         "https://www.googleapis.com/auth/drive"
     ]
-    creds = Credentials.from_service_account_file("credentials.json", scopes=scope)
+    creds_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
+    if creds_json:
+        import json
+        creds_dict = json.loads(creds_json)
+        creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
+    else:
+        creds = Credentials.from_service_account_file("credentials.json", scopes=scope)
     gc = gspread.authorize(creds)
     sheet = gc.open("LauraAI-registros").sheet1
     return sheet
@@ -466,3 +472,4 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+    
