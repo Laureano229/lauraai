@@ -324,7 +324,7 @@ Importante: no penalices respuestas genéricas por falta de contexto sobre la em
 
         response = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=1500,
+            max_tokens=3000,
             messages=[{"role": "user", "content": prompt}]
         )
         return {"feedback": response.content[0].text, "puesto": request.puesto}
@@ -414,7 +414,7 @@ S� específico y orientado al mercado argentino de datos y tecnología."""
 
         response = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=2000,
+            max_tokens=3000,
             messages=[{"role": "user", "content": prompt}]
         )
         return {"analisis": response.content[0].text, "puesto_objetivo": puesto_objetivo}
@@ -462,7 +462,7 @@ S� específico y orientado al mercado argentino."""
 
         response = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=2000,
+            max_tokens=3000,
             messages=[{"role": "user", "content": prompt}]
         )
         return {"analisis": response.content[0].text, "puesto_objetivo": puesto_objetivo}
